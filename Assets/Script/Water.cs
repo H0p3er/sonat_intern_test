@@ -2,6 +2,8 @@ using System;
 using System.Runtime.Serialization;
 using UnityEngine;
 
+
+[Serializable]
 public class Water : IEquatable<Water>
 {
     public int id;

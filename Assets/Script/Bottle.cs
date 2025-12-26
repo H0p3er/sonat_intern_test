@@ -1,23 +1,27 @@
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using static UnityEditor.Progress;
 
 public partial class Bottle : MonoBehaviour
 {
-    public int waterDepth = 4;
+    [SerializeField] int waterDepth = 4;
 
-    public Stack<Water> waters;
+    public int WaterDepth { get => waterDepth; }
+    public Stack<Water> Waters { get; private set; }
 
     private void Awake()
     {
-        waters = new Stack<Water>(waterDepth);
-
+        Waters = new Stack<Water>(waterDepth);
+        _water = new List<Water>();
         GetWaterUI();
     }
 
-    public bool IsFull => waterDepth == waters.Count;
+    public bool IsFull => waterDepth == Waters.Count;
+
+
 }
 
 public partial class Bottle
@@ -32,30 +36,50 @@ public partial class Bottle
     }
 }
 
-
-public class PourCommmand
+public partial class Bottle
 {
-    public Bottle source;
+    [SerializeField] List<Water> _water;
 
-    public Bottle target;
 
-    public void Execute()
+    public void DebugBottle()
     {
+        StringBuilder stringBuilder = new StringBuilder();
 
-        while (IsPourable(source, target))
+
+        foreach (var item in Waters)
         {
-            target.waters.Push(source.waters.Pop());
+            stringBuilder.AppendLine(name + ":" + item.ToString());
+        }
+
+        Debug.Log(stringBuilder.ToString());
+    }
+
+#if UNITY_EDITOR
+    public void Start()
+    {
+        SyncFromList();
+    }
+
+    private void SyncFromStack()
+    {
+        Waters.Clear();
+        foreach (var item in Waters)
+        {
+            _water.Add(item);
         }
     }
 
-    private bool IsPourable(Bottle source, Bottle target)
+    private void SyncFromList()
     {
-        bool isNotPourableCondition = target.IsFull
-            || !source.waters.TryPeek(out Water soureFirstElement)
-            || !soureFirstElement.Equals(target.waters.Peek());
-
-        return !isNotPourableCondition;
+        foreach (var item in _water)
+        {
+            Waters.Push(item);
+        }
     }
 
+    private void FixedUpdate()
+    {
+        SyncFromStack();
+    }
+#endif
 }
-

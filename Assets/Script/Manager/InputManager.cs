@@ -2,51 +2,92 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour, InputSystem_Actions.IPlayerActions 
+public class InputManager : MonoBehaviour, InputSystem_Actions.IUIActions
 {
     public static InputManager Instance;
 
-    public event UnityAction Interact = delegate { };
+    public event UnityAction Click = delegate { };
 
-    InputSystem_Actions inputActions;
+    public Vector2 MousePosition => _uiWrapper.Point.ReadValue<Vector2>();
+
+    InputSystem_Actions _inputActions;
+
+    InputSystem_Actions.UIActions _uiWrapper;
 
     private void Awake()
     {
         Instance = this;
 
         DontDestroyOnLoad(gameObject);
-
-        this.inputActions = new InputSystem_Actions();
-
-        inputActions.Player.AddCallbacks(this);
     }
 
     private void OnEnable()
     {
-        inputActions.Enable();
+        if (_inputActions == null)
+        {
+            this._inputActions = new InputSystem_Actions();
+
+            _uiWrapper = this._inputActions.UI;
+
+            _uiWrapper.AddCallbacks(this);
+
+        }
+        _uiWrapper.Enable();
     }
 
     private void OnDisable()
     {
-        inputActions.Disable();
+        _inputActions?.Disable();
     }
 
-    private void OnDestroy()
+
+    public void OnNavigate(InputAction.CallbackContext context)
     {
-        inputActions.Dispose();
+  
     }
 
-    public void OnInteract(InputAction.CallbackContext context)
+    public void OnSubmit(InputAction.CallbackContext context)
     {
-        if (context.performed) Interact.Invoke();
+     
     }
 
-    public void OnLook(InputAction.CallbackContext context)
+    public void OnCancel(InputAction.CallbackContext context)
     {
         
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    public void OnPoint(InputAction.CallbackContext context)
+    {
+        
+    }
+
+    public void OnClick(InputAction.CallbackContext context)
+    {
+/*        Debug.Log("Perform");*/
+        if (context.performed) Click.Invoke();
+    }
+
+    public void OnRightClick(InputAction.CallbackContext context)
+    {
+        
+    }
+
+    public void OnMiddleClick(InputAction.CallbackContext context)
+    {
+        
+    }
+
+    public void OnScrollWheel(InputAction.CallbackContext context)
+    {
+        
+    }
+
+    public void OnTrackedDevicePosition(InputAction.CallbackContext context)
+    {
+        
+    }
+
+    public void OnTrackedDeviceOrientation(InputAction.CallbackContext context)
     {
         
     }

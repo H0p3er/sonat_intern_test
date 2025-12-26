@@ -194,9 +194,8 @@ GameObject:
   - component: {fileID: 6132850041211396858}
   - component: {fileID: 1256073973649165023}
   - component: {fileID: 2046619205016697662}
-  - component: {fileID: 8174324663263538377}
   m_Layer: 0
-  m_Name: Tube
+  m_Name: Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -340,20 +339,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Tube
   waterDepth: 4
   material: {fileID: 0}
---- !u!114 &8174324663263538377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2449338759379005766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrary
-  m_Library: []
-  m_SpriteLibraryAsset: {fileID: 0}
 --- !u!1 &5689057505062442342
 GameObject:
   m_ObjectHideFlags: 0
