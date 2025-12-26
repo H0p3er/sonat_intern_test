@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour, InputSystem_Actions.IPlayerActions
     private void Awake()
     {
         Instance = this;
+
         DontDestroyOnLoad(gameObject);
 
         this.inputActions = new InputSystem_Actions();
@@ -42,11 +43,11 @@ public class InputManager : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        
     }
 }
