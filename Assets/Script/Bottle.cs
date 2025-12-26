@@ -10,8 +10,28 @@ public partial class Bottle : MonoBehaviour
 
     public Stack<Water> waters;
 
+    private void Awake()
+    {
+        waters = new Stack<Water>(waterDepth);
+
+        GetWaterUI();
+    }
+
     public bool IsFull => waterDepth == waters.Count;
 }
+
+public partial class Bottle
+{
+    public Material material;
+
+    private void GetWaterUI()
+    {
+        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        
+        if (spriteRenderer != null) material = spriteRenderer.material;
+    }
+}
+
 
 public class PourCommmand
 {
@@ -21,22 +41,21 @@ public class PourCommmand
 
     public void Execute()
     {
-        Pour(source, target);
-    }
 
-    private bool IsPourable(Bottle source, Bottle target)
-    {
-        return target.IsFull
-            || !source.waters.TryPeek(out Water soureFirstElement)
-            || !soureFirstElement.Equals(target.waters.Peek()); ;
-    }
-
-    private void Pour(Bottle source, Bottle target) { 
-    
         while (IsPourable(source, target))
         {
             target.waters.Push(source.waters.Pop());
         }
     }
+
+    private bool IsPourable(Bottle source, Bottle target)
+    {
+        bool isNotPourableCondition = target.IsFull
+            || !source.waters.TryPeek(out Water soureFirstElement)
+            || !soureFirstElement.Equals(target.waters.Peek());
+
+        return !isNotPourableCondition;
+    }
+
 }
 
