@@ -5,7 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BottleManager : MonoBehaviour
+public class BottleInteractHandler : MonoBehaviour
 {
     [SerializeField] Bottle _currentBottle;
 

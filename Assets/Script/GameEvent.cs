@@ -19,20 +19,21 @@ public static partial class GameEvent
 
 public static partial class GameEvent
 {
-    public static event UnityAction<AnimationState> SelectAnimation = delegate { };
+    public static event UnityAction<AnimationBasicState> SelectAnimation = delegate { };
 
-    public static event UnityAction<AnimationState> PouringAnimation = delegate { };
+    public static event UnityAction<AnimationBasicState> PouringAnimation = delegate { };
 
-    public static void InvokeSelectAnimation(AnimationState animationState)
+    public static void InvokeSelectAnimation(AnimationBasicState animationState)
     {
         SelectAnimation?.Invoke(animationState);
     }
 
 }
 
-public enum AnimationState
+public enum AnimationBasicState
 {
     Start,
     Running,
     Stop,
 }
+
