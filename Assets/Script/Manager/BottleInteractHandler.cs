@@ -70,15 +70,13 @@ public partial class BottleInteractHandler
     {      
         int i = 0;
 
-        InputEvent.InvokePourBottle(sourceBottle, targetBottle ,i);
-
         while (IsPourable(sourceBottle, targetBottle))
         {
+            i++;
             targetBottle.Waters.Push(sourceBottle.Waters.Pop());
-            InputEvent.InvokePourBottle(sourceBottle, targetBottle, i);
         }
 
-        InputEvent.InvokePourBottle(sourceBottle, targetBottle, i);
+        AnimationEvent.InvokePourBottle(sourceBottle, targetBottle, i);
     }
 
     public bool IsPourable(in Bottle sourceBottle, in Bottle targetBottle)
