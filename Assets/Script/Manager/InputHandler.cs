@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
-    [SerializeField] InputSystem_Actions _inputActions;
+    InputSystem_Actions _inputActions;
 
     InputSystem_Actions.PlayerActions _playerActions;
 
@@ -41,7 +41,7 @@ public class InputHandler : MonoBehaviour, InputSystem_Actions.IPlayerActions
         {
             case InputActionPhase.Performed:
               /*  Debug.Log("Point");*/
-                GameEvent.InvokePoint(context.ReadValue<Vector2>());
+                InputEvent.InvokePoint(context.ReadValue<Vector2>());
                 break;
             default:
                 break;
@@ -55,7 +55,7 @@ public class InputHandler : MonoBehaviour, InputSystem_Actions.IPlayerActions
         {
             case InputActionPhase.Performed:
                 Debug.Log("Click");
-                GameEvent.InvokeClick();
+                InputEvent.InvokeClick();
                 break;
             default:
                 break;

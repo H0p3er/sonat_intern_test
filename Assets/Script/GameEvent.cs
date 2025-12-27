@@ -1,7 +1,10 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public static partial class GameEvent
+/// <summary>
+/// Input Event Bus
+/// </summary>
+public static class InputEvent
 {
     public static event UnityAction<Vector2> Point = delegate { };
 
@@ -15,25 +18,26 @@ public static partial class GameEvent
     {
         Click?.Invoke();
     }
+
 }
 
-public static partial class GameEvent
+/// <summary>
+/// Animation Event Bus
+/// </summary>
+public static class AnimationEvent
 {
-    public static event UnityAction<AnimationBasicState> SelectAnimation = delegate { };
+    public static event UnityAction<Bottle> SelectBottle = delegate { };
 
-    public static event UnityAction<AnimationBasicState> PouringAnimation = delegate { };
+    public static event UnityAction<Bottle, Bottle, int> PourBottle = delegate { };
 
-    public static void InvokeSelectAnimation(AnimationBasicState animationState)
+    public static void InvokeSelectBottle(Bottle target)
     {
-        SelectAnimation?.Invoke(animationState);
+        SelectBottle?.Invoke(target);
     }
 
-}
-
-public enum AnimationBasicState
-{
-    Start,
-    Running,
-    Stop,
+    public static void InvokePourBottle(Bottle source, Bottle target, int amount)
+    {
+        PourBottle?.Invoke(source, target, amount);
+    }
 }
 

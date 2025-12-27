@@ -224,7 +224,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d03d67061a9264692efdfe60305571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BottleManager
-  _currentBottle: {fileID: 0}
+  _context:
+    sourceBottle: {fileID: 0}
+    targetBottle: {fileID: 0}
+    currentState: 0
   _mousePosition: {x: 0, y: 0}
 --- !u!4 &73151184
 Transform:
@@ -794,6 +797,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 112158797773123047, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 112158797773123047, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
@@ -801,6 +808,46 @@ PrefabInstance:
       propertyPath: m_DrawMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_ShapeTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_Sprites.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_LocalAABB.m_Center.x
+      value: -0.00000011920929
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_LocalAABB.m_Center.y
+      value: 0.62750006
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_LocalAABB.m_Extent.x
+      value: 1.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_LocalAABB.m_Extent.y
+      value: 1.6275
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: 'm_Sprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100116205, guid: 50601b68bdb8b0443a713f87e2fe3b63, type: 3}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: 'm_Sprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: 'm_Sprites.Array.data[9]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
     - target: {fileID: 2046619205016697662, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
       propertyPath: _water.Array.size
       value: 1
@@ -869,6 +916,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7158884065740062722, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158884065740062722, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401764980072651967, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8645931511571477720, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
@@ -886,6 +945,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_ShapeTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_Sprites.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_LocalAABB.m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_LocalAABB.m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_LocalAABB.m_Extent.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: m_LocalAABB.m_Extent.y
+      value: 1.065
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: 'm_Sprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 55ece7e326294784392f157b19a856ad, type: 3}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: 'm_Sprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 55ece7e326294784392f157b19a856ad, type: 3}
+    - target: {fileID: 1747358379241782747, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+      propertyPath: 'm_Sprites.Array.data[9]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
     - target: {fileID: 2046619205016697662, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
       propertyPath: _water.Array.size
       value: 3

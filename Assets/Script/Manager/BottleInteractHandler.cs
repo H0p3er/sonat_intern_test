@@ -1,11 +1,7 @@
-using JetBrains.Annotations;
-using System;
-using System.Runtime.CompilerServices;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class BottleInteractHandler : MonoBehaviour
+using UnityEngine;
+
+public partial class BottleInteractHandler : MonoBehaviour
 {
     [SerializeField] Bottle _currentBottle;
 
@@ -13,15 +9,15 @@ public class BottleInteractHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvent.Point += OnPoint;
-        GameEvent.Click += OnClick;
+        InputEvent.Point += OnPoint;
+        InputEvent.Click += OnClick;
     }
 
 
     private void OnDisable()
     {
-        GameEvent.Point -= OnPoint;
-        GameEvent.Click -= OnClick;
+        InputEvent.Point -= OnPoint;
+        InputEvent.Click -= OnClick;
     }
 
     private void OnPoint(Vector2 vector)
@@ -34,32 +30,113 @@ public class BottleInteractHandler : MonoBehaviour
     private void OnClick()
     {
 
-        if (!TryGetBottleByRaycast(out Bottle selectBottle)) {       
+        if (!TryGetBottleByRaycast(out Bottle selectBottle)) {
             Debug.Log("Not found Bottle");
-            _currentBottle = null;
             return;
         }
 
-        if (selectBottle.Equals(_currentBottle)) { // Prevent Duplicate select
-            return;
-        }
-
-
-        if (_currentBottle != null) { // Check whether to select or pour 
-
-            var pourCommmand = new PourCommmand(_currentBottle, selectBottle);
-
-            pourCommmand.Execute();
-
-            _currentBottle = null;
-
+        if (IsSelectable(_currentBottle, selectBottle)) {
+            Debug.Log("Selecteable");
+            Select(selectBottle);
             return;
         } 
+        
+        
+        if (IsPourable(_currentBottle, selectBottle))
+        {
+            Debug.Log("Pourable");
+            Pour(_currentBottle, selectBottle);
+            _currentBottle = null;
+            return;
+        }
 
-        _currentBottle = selectBottle;
-
+        
     }
 
+
+
+    public enum State
+    {
+        Idle,
+        Start,
+        Running,
+        Stop,
+    }
+}
+
+public partial class BottleInteractHandler
+{
+    public void Pour(Bottle sourceBottle, Bottle targetBottle)
+    {      
+        int i = 0;
+
+        InputEvent.InvokePourBottle(sourceBottle, targetBottle ,i);
+
+        while (IsPourable(sourceBottle, targetBottle))
+        {
+            targetBottle.Waters.Push(sourceBottle.Waters.Pop());
+            InputEvent.InvokePourBottle(sourceBottle, targetBottle, i);
+        }
+
+        InputEvent.InvokePourBottle(sourceBottle, targetBottle, i);
+    }
+
+    public bool IsPourable(in Bottle sourceBottle, in Bottle targetBottle)
+    {
+        if (sourceBottle == null || targetBottle == null || sourceBottle.Equals(targetBottle))
+        {
+            Debug.Log("Target is null");
+            return false;
+        }
+
+        if (targetBottle.IsFull)
+        {
+            Debug.Log("Target is full:");
+            return false;
+        }
+
+        if (!sourceBottle.Waters.TryPeek(out Water soureFirstElement))
+        {
+            Debug.Log("Source is empty:");
+            return false;
+        }
+
+        if (targetBottle.Waters.TryPeek(out Water targetFirstElement) && !soureFirstElement.Equals(targetFirstElement))
+        {
+            Debug.Log("Source is not Equal Target:");
+            return false;
+        }
+        return true;
+
+    }
+}
+
+public partial class BottleInteractHandler
+{
+    public void Select(Bottle bottle)
+    {
+        _currentBottle = bottle;
+    }
+
+    public void RemoveSelect() { 
+        _currentBottle = null;    
+    }
+
+    public bool IsSelectable(Bottle sourceBottle, Bottle targetBottle)
+    {
+
+        if (targetBottle == null) return false;
+
+        if (sourceBottle != null) return false;
+
+        if (targetBottle.Equals(sourceBottle)) return false;
+
+        return true;
+    }
+}
+
+public partial class BottleInteractHandler
+{
     private bool TryGetBottleByRaycast(out Bottle bottle)
     {
         bottle = default;
@@ -72,4 +149,6 @@ public class BottleInteractHandler : MonoBehaviour
 
         return hit.collider.gameObject.TryGetComponent(out bottle);
     }
+
+
 }

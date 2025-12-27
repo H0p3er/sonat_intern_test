@@ -21,7 +21,6 @@ public partial class Bottle : MonoBehaviour
 
     public bool IsFull => waterDepth <= Waters.Count;
 
-    public bool IsEmpty => Waters.Count <= 0;
 }
 
 public partial class Bottle
@@ -39,7 +38,6 @@ public partial class Bottle
 public partial class Bottle
 {
     [SerializeField] List<Water> _water = new ();
-
 
     public void DebugBottle()
     {
