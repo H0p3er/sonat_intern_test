@@ -26,6 +26,10 @@ public class PlayButton : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Load Scene to handle <see cref="Button." />
+    /// </summary>
     private void OnClick()
     {
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(SceneName.Scene_Gameplay.ToString(), LoadSceneMode.Single);

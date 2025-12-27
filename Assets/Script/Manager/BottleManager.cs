@@ -1,47 +1,75 @@
+using JetBrains.Annotations;
 using System;
+using System.Runtime.CompilerServices;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class BottleManager : MonoBehaviour
 {
-    [SerializeField] Bottle _selectedBottle;
-
     [SerializeField] Bottle _currentBottle;
 
+    [SerializeField] Vector2 _mousePosition;
 
     private void OnEnable()
     {
-        InputManager.Instance.Click += OnClick;
+        GameEvent.Point += OnPoint;
+        GameEvent.Click += OnClick;
     }
 
-    private void OnDisable ()
+
+    private void OnDisable()
     {
-        InputManager.Instance.Click -= OnClick;
+        GameEvent.Point -= OnPoint;
+        GameEvent.Click -= OnClick;
     }
+
+    private void OnPoint(Vector2 vector)
+    {
+/*        Debug.Log("Mouse position" + vector);*/
+        _mousePosition = vector;
+    }
+
 
     private void OnClick()
     {
 
-        Debug.Log("On Click"); 
-       
-        Vector2 mousePosition = InputManager.Instance.MousePosition;
+        if (!TryGetBottleByRaycast(out Bottle selectBottle)) {       
+            Debug.Log("Not found Bottle");
+            _currentBottle = null;
+            return;
+        }
 
-        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+        if (selectBottle.Equals(_currentBottle)) { // Prevent Duplicate select
+            return;
+        }
 
-        if (hit.collider == null) return;
 
-        if (!hit.collider.gameObject.TryGetComponent(out Bottle selectBottle)) return;
+        if (_currentBottle != null) { // Check whether to select or pour 
 
-        selectBottle.DebugBottle();
-
-        if (_selectedBottle == null) {
-            _selectedBottle = selectBottle;
-        } else
-        {
-            PourCommmand pourCommmand = new PourCommmand(_selectedBottle, _currentBottle);
+            var pourCommmand = new PourCommmand(_currentBottle, selectBottle);
 
             pourCommmand.Execute();
 
-        }
+            _currentBottle = null;
+
+            return;
+        } 
+
+        _currentBottle = selectBottle;
+
+    }
+
+    private bool TryGetBottleByRaycast(out Bottle bottle)
+    {
+        bottle = default;
+
+        Vector2 screenToWorldPoint = Camera.main.ScreenToWorldPoint(_mousePosition);
+
+        RaycastHit2D hit = Physics2D.Raycast(screenToWorldPoint, Vector2.zero);
+
+        if (hit.collider == null) return false;
+
+        return hit.collider.gameObject.TryGetComponent(out bottle);
     }
 }

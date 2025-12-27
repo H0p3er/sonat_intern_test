@@ -2,23 +2,17 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour, InputSystem_Actions.IUIActions
+
+
+public class InputHandler : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
-    public static InputManager Instance;
+    [SerializeField] InputSystem_Actions _inputActions;
 
-    public event UnityAction Click = delegate { };
-
-    public Vector2 MousePosition => _uiWrapper.Point.ReadValue<Vector2>();
-
-    InputSystem_Actions _inputActions;
-
-    InputSystem_Actions.UIActions _uiWrapper;
+    InputSystem_Actions.PlayerActions _playerActions;
 
     private void Awake()
     {
-        Instance = this;
-
-        DontDestroyOnLoad(gameObject);
+       
     }
 
     private void OnEnable()
@@ -27,68 +21,46 @@ public class InputManager : MonoBehaviour, InputSystem_Actions.IUIActions
         {
             this._inputActions = new InputSystem_Actions();
 
-            _uiWrapper = this._inputActions.UI;
+            this._playerActions = this._inputActions.Player;
 
-            _uiWrapper.AddCallbacks(this);
+            this._playerActions.AddCallbacks(this);
 
         }
-        _uiWrapper.Enable();
+        this._inputActions.Enable();  
     }
 
     private void OnDisable()
     {
-        _inputActions?.Disable();
+        this._inputActions?.Disable();
     }
 
-
-    public void OnNavigate(InputAction.CallbackContext context)
-    {
-  
-    }
-
-    public void OnSubmit(InputAction.CallbackContext context)
-    {
-     
-    }
-
-    public void OnCancel(InputAction.CallbackContext context)
-    {
-        
-    }
 
     public void OnPoint(InputAction.CallbackContext context)
     {
-        
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+              /*  Debug.Log("Point");*/
+                GameEvent.InvokePoint(context.ReadValue<Vector2>());
+                break;
+            default:
+                break;
+        }
+
     }
 
     public void OnClick(InputAction.CallbackContext context)
     {
-/*        Debug.Log("Perform");*/
-        if (context.performed) Click.Invoke();
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                Debug.Log("Click");
+                GameEvent.InvokeClick();
+                break;
+            default:
+                break;
+        }
+
     }
 
-    public void OnRightClick(InputAction.CallbackContext context)
-    {
-        
-    }
-
-    public void OnMiddleClick(InputAction.CallbackContext context)
-    {
-        
-    }
-
-    public void OnScrollWheel(InputAction.CallbackContext context)
-    {
-        
-    }
-
-    public void OnTrackedDevicePosition(InputAction.CallbackContext context)
-    {
-        
-    }
-
-    public void OnTrackedDeviceOrientation(InputAction.CallbackContext context)
-    {
-        
-    }
 }

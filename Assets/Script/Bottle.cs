@@ -5,6 +5,7 @@ using System.Text;
 using UnityEngine;
 using static UnityEditor.Progress;
 
+
 public partial class Bottle : MonoBehaviour
 {
     [SerializeField] int waterDepth = 4;
@@ -15,13 +16,12 @@ public partial class Bottle : MonoBehaviour
     private void Awake()
     {
         Waters = new Stack<Water>(waterDepth);
-        _water = new List<Water>();
         GetWaterUI();
     }
 
-    public bool IsFull => waterDepth == Waters.Count;
+    public bool IsFull => waterDepth <= Waters.Count;
 
-
+    public bool IsEmpty => Waters.Count <= 0;
 }
 
 public partial class Bottle
@@ -38,17 +38,18 @@ public partial class Bottle
 
 public partial class Bottle
 {
-    [SerializeField] List<Water> _water;
+    [SerializeField] List<Water> _water = new ();
 
 
     public void DebugBottle()
     {
         StringBuilder stringBuilder = new StringBuilder();
 
+        stringBuilder.AppendLine(name + ":");
 
         foreach (var item in Waters)
         {
-            stringBuilder.AppendLine(name + ":" + item.ToString());
+            stringBuilder.AppendLine(item.name + ":" + item.color);
         }
 
         Debug.Log(stringBuilder.ToString());
@@ -58,24 +59,32 @@ public partial class Bottle
     public void Start()
     {
         SyncFromList();
-    }
-
-    private void SyncFromStack()
-    {
-        Waters.Clear();
-        foreach (var item in Waters)
-        {
-            _water.Add(item);
-        }
+        DebugBottle();
     }
 
     private void SyncFromList()
     {
         foreach (var item in _water)
         {
+/*            Debug.Log("Is Push:" + item.color);*/
             Waters.Push(item);
         }
     }
+
+    private void SyncFromStack()
+    {
+        if (Waters == null) return;
+
+/*        Debug.Log("Sync:");
+*/
+        _water.Clear();
+        foreach (var item in Waters)
+        {
+            _water.Add(item);
+        }
+    }
+
+
 
     private void FixedUpdate()
     {

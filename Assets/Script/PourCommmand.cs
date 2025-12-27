@@ -1,3 +1,6 @@
+
+using UnityEngine;
+
 public class PourCommmand
 {
     private Bottle source;
@@ -12,7 +15,6 @@ public class PourCommmand
 
     public void Execute()
     {
-
         while (IsPourable(source, target))
         {
             target.Waters.Push(source.Waters.Pop());
@@ -21,11 +23,25 @@ public class PourCommmand
 
     private bool IsPourable(Bottle source, Bottle target)
     {
-        bool isNotPourableCondition = target.IsFull
-            || !source.Waters.TryPeek(out Water soureFirstElement)
-            || !soureFirstElement.Equals(target.Waters.Peek());
+        if (target.IsFull)
+        {
+            Debug.Log("Target is full:");
+            return false;
+        }
 
-        return !isNotPourableCondition;
+        if (!source.Waters.TryPeek(out Water soureFirstElement))
+        {
+            Debug.Log("Source is empty:");
+            return false;
+        }
+
+        if (!target.IsEmpty && !soureFirstElement.Equals(target.Waters.Peek()))
+        {
+            Debug.Log("Source is not Equal Target:");
+            return false;
+        }
+      
+        return true;
     }
 
 }
