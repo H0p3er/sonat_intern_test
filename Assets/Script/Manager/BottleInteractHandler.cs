@@ -73,10 +73,10 @@ public partial class BottleInteractHandler
         while (IsPourable(sourceBottle, targetBottle))
         {
             i++;
-            targetBottle.Waters.Push(sourceBottle.Waters.Pop());
+            targetBottle.WaterStack.Push(sourceBottle.WaterStack.Pop());
         }
 
-        AnimationEvent.InvokePourBottle(sourceBottle, targetBottle, i);
+        ActionEvent.InvokePourBottle(sourceBottle, targetBottle, i);
     }
 
     public bool IsPourable(in Bottle sourceBottle, in Bottle targetBottle)
@@ -93,13 +93,13 @@ public partial class BottleInteractHandler
             return false;
         }
 
-        if (!sourceBottle.Waters.TryPeek(out Water soureFirstElement))
+        if (!sourceBottle.WaterStack.TryPeek(out Water soureFirstElement))
         {
             Debug.Log("Source is empty:");
             return false;
         }
 
-        if (targetBottle.Waters.TryPeek(out Water targetFirstElement) && !soureFirstElement.Equals(targetFirstElement))
+        if (targetBottle.WaterStack.TryPeek(out Water targetFirstElement) && !soureFirstElement.Equals(targetFirstElement))
         {
             Debug.Log("Source is not Equal Target:");
             return false;

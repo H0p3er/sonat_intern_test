@@ -1,6 +1,26 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+
+public static class GameEvent
+{
+    public static event UnityAction Win = delegate { };
+
+    public static event UnityAction Lose = delegate { };
+
+    public static void InvokeWin()
+    {
+        Win?.Invoke();
+    }
+
+    public static void InvokeClick()
+    {
+        Lose?.Invoke();
+    }
+
+}
+
+
 /// <summary>
 /// Input Event Bus
 /// </summary>
@@ -22,13 +42,14 @@ public static class InputEvent
 }
 
 /// <summary>
-/// Animation Event Bus
+/// Action Event Bus
 /// </summary>
-public static class AnimationEvent
+public static class ActionEvent
 {
     public static event UnityAction<Bottle> SelectBottle = delegate { };
 
     public static event UnityAction<Bottle, Bottle, int> PourBottle = delegate { };
+    
 
     public static void InvokeSelectBottle(Bottle target)
     {
