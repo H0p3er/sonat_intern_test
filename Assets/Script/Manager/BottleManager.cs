@@ -1,6 +1,8 @@
-using NUnit.Framework;
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class BottleManager : MonoBehaviour
 {
@@ -9,8 +11,6 @@ public class BottleManager : MonoBehaviour
     [SerializeField] BottleSpawnHandler _spawnHandler;
 
     [SerializeField] BottleInteractHandler _interactHandler;
-
-    [SerializeField] BottleLayoutHandler _layoutHandler;
 
 
     private void Awake()
@@ -21,8 +21,40 @@ public class BottleManager : MonoBehaviour
 
         if (!TryGetComponent(out _interactHandler)) _interactHandler = gameObject.AddComponent<BottleInteractHandler>();
 
-        if (!TryGetComponent(out _layoutHandler)) _layoutHandler = gameObject.AddComponent<BottleLayoutHandler>();
 
+    }
 
+    private void OnEnable()
+    {
+        ActionEvent.PourBottle += OnPourBottle;
+    }
+
+    private void OnDisable()
+    {
+        ActionEvent.PourBottle -= OnPourBottle;
+    }
+
+    private void OnPourBottle(Bottle source, Bottle target, int amount)
+    {
+        CheckWinCondition();       
+    }
+
+    private void CheckWinCondition()
+    {
+        bool isWinFlag = true;
+
+        foreach (var item in this.Bottles)
+        {
+            if (!item.IsComplete)
+            {
+                isWinFlag = false;
+                break;
+            }
+        }
+
+        if (isWinFlag)
+        {
+            GameEvent.InvokeWin();
+        }
     }
 }

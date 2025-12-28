@@ -48,22 +48,20 @@ public class BottleView : MonoBehaviour
 
     private void UpdateView()
     {
-        int i = 0;
-
         _waterList = _waterStack.ToList();
 
-        while (i < _bottle.WaterDepth) {
-            if (i >= _waterRenderers.Count) break;
+        _waterList.Reverse();
 
+        for (int i = _waterRenderers.Count - 1; i >= 0; i--)
+        {
             if (i >= _waterList.Count)
             {
                 _waterRenderers[i].color = Color.clear;
-            } else
+            }
+            else
             {
                 _waterRenderers[i].color = _waterList[i].Color;
             }
-
-            i++;
         }
 
     }

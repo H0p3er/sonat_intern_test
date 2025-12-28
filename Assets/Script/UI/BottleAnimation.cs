@@ -8,13 +8,13 @@ public class BottleAnimationHandler : MonoBehaviour
 {
     [SerializeField] Sequence _sequence;
 
-    [SerializeField] Vector3 _anchorPouringPosition = new (0.2f ,0, 0);
+    [SerializeField] Vector2 _anchorPouringPosition = new (0.2f ,0);
 
     [SerializeField] float _moveDuration = 0.5f;
 
     [SerializeField] float _pourDuration = 0.5f;
 
-    [SerializeField] float _pourAngleLimit = 150f;
+    [SerializeField] float _pourAngleLimit = 160f;
 
     private void OnEnable()
     {
@@ -59,9 +59,9 @@ public class BottleAnimationHandler : MonoBehaviour
     {
         Sequence moveSequence = DOTween.Sequence();
 
-        Vector3 targetPosition = target.transform.position;
+        Vector3 targetPosition = target.transform.position + new Vector3(_anchorPouringPosition.x * absPoint, _anchorPouringPosition.y);
 
-        moveSequence.Append(source.transform.DOMove(targetPosition + _anchorPouringPosition * absPoint, _moveDuration));
+        moveSequence.Append(source.transform.DOMove(targetPosition, _moveDuration));
 
         moveSequence.Pause();
 
@@ -72,7 +72,7 @@ public class BottleAnimationHandler : MonoBehaviour
     {
         Sequence pouringSequence = DOTween.Sequence();
 
-        Vector3 angle = (new Vector3(0 , 0 , _pourAngleLimit)) / amount * absPoint;
+        Vector3 angle = absPoint * amount * new Vector3(0 , 0 , _pourAngleLimit) / source.WaterDepth;
 
         pouringSequence.Append(source.transform.DORotate(angle, _pourDuration));
 

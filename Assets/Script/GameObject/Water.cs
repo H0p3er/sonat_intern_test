@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using UnityEngine;
 
@@ -7,6 +8,11 @@ using UnityEngine;
 public class Water : IEquatable<Water>
 {
     [SerializeField] private WaterColor _color;
+
+    public Water(WaterColor color)
+    {
+        this._color = color;
+    }
 
     public Color Color {
         get

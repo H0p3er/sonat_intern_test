@@ -38,9 +38,9 @@ public class Bottle : MonoBehaviour, IEquatable<Bottle>
 
     public void SetWaterStackFromList(List<Water> waterList)
     {
-        int index = Mathf.Min(WaterDepth - 1, waterList.Count - 1);
+        int count = Mathf.Min(WaterDepth, waterList.Count);
 
-        for (int i = 0; i < index; i++)
+        for (int i = count - 1; i >= 0; i--)
         {
             WaterStack.Push(waterList[i]);
         }
