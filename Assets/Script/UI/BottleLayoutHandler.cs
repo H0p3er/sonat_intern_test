@@ -6,10 +6,14 @@ public class BottleLayoutHandler : MonoBehaviour
 {
     [SerializeField] List<Bottle> _bottles;
 
-    [SerializeField] float _padding;
+    [SerializeField] BottleManager _bottleManager;
+
+    [SerializeField] float _padding = 1f;
     private void Awake()
     {
-        if (_bottles == null) _bottles = GetComponentsInChildren<Bottle>().ToList();
+        if (!TryGetComponent(out _bottleManager)) _bottleManager = gameObject.AddComponent<BottleManager>();
+
+        _bottles = _bottleManager.Bottles;
     }
 
     private void OnEnable()

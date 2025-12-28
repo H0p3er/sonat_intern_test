@@ -14,6 +14,8 @@ public class BottleAnimationHandler : MonoBehaviour
 
     [SerializeField] float _pourDuration = 0.5f;
 
+    [SerializeField] float _pourAngleLimit = 150f;
+
     private void OnEnable()
     {
         ActionEvent.PourBottle += OnPourBottle;
@@ -26,7 +28,7 @@ public class BottleAnimationHandler : MonoBehaviour
 
     private void OnDestroy()
     {
-        if ( _sequence != null && _sequence.IsPlaying())
+        if (_sequence.IsActive())
         {
             _sequence.Kill();
             _sequence.OnKill(() => { _sequence = null;  });
@@ -35,41 +37,48 @@ public class BottleAnimationHandler : MonoBehaviour
 
     private void OnPourBottle(Bottle source, Bottle target, int amount)
     {
-        if (_sequence == null) _sequence = DOTween.Sequence();
+
+        if (!_sequence.IsActive() || _sequence.IsComplete()) _sequence = DOTween.Sequence();
 
         Vector3 sourceOriginPosition = source.transform.position;
 
-        Vector2 targetOriginPosition = target.transform.position;
+        Vector3 targetOriginPosition = target.transform.position;
 
-        _sequence.Append(MoveBottleToPour(source, target));
+        int absPoint = (targetOriginPosition.x - sourceOriginPosition.x) > 0 ? -1 : 1;
 
-        _sequence.Append(PouringBottle(source, target, amount));
+        _sequence.Append(MoveBottleToPour(source, target, absPoint));
+
+        _sequence.Append(PouringBottle(source, target, absPoint, amount));
 
         _sequence.Append(MoveBottleToOrigin(source, sourceOriginPosition));
+
+        _sequence.Play();
     }
 
-    private Sequence MoveBottleToPour(Bottle source, Bottle target)
+    private Sequence MoveBottleToPour(Bottle source, Bottle target, int absPoint)
     {
         Sequence moveSequence = DOTween.Sequence();
 
-        int absPoint = (target.transform.position.x - source.transform.position.x) > 0 ? 1 : -1;
+        Vector3 targetPosition = target.transform.position;
 
-        Vector3 sourcePosition = source.transform.position;
+        moveSequence.Append(source.transform.DOMove(targetPosition + _anchorPouringPosition * absPoint, _moveDuration));
 
-        moveSequence.Append(source.transform.DOMove(sourcePosition + _anchorPouringPosition * absPoint, _moveDuration));
+        moveSequence.Pause();
 
         return moveSequence;
     }
 
-    private Sequence PouringBottle(Bottle source, Bottle target, int amount)
+    private Sequence PouringBottle(Bottle source, Bottle target, int absPoint, int amount)
     {
         Sequence pouringSequence = DOTween.Sequence();
 
-        Vector3 angle = (new Vector3(180 , 0 , 0)) / amount;
+        Vector3 angle = (new Vector3(0 , 0 , _pourAngleLimit)) / amount * absPoint;
 
         pouringSequence.Append(source.transform.DORotate(angle, _pourDuration));
 
         pouringSequence.Append(source.transform.DORotate(Vector3.zero, _pourDuration));
+
+        pouringSequence.Pause();
 
         return pouringSequence;
     }
@@ -79,6 +88,8 @@ public class BottleAnimationHandler : MonoBehaviour
         Sequence moveSequence = DOTween.Sequence();
 
         moveSequence.Append(source.transform.DOMove(sourceOriginPosition, _moveDuration));
+
+        moveSequence.Pause();
 
         return moveSequence;
     }

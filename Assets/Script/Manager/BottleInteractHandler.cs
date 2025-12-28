@@ -32,7 +32,7 @@ public partial class BottleInteractHandler : MonoBehaviour
 
         if (!TryGetBottleByRaycast(out Bottle selectBottle)) {
             Debug.Log("Not found Bottle");
-            _currentBottle = null;
+            RemoveSelect();
             return;
         }
 
@@ -41,17 +41,17 @@ public partial class BottleInteractHandler : MonoBehaviour
             Select(selectBottle);
             return;
         } 
-        
-        
+
+
         if (IsPourable(_currentBottle, selectBottle))
         {
             Debug.Log("Pourable");
             Pour(_currentBottle, selectBottle);
-            _currentBottle = null;
+            RemoveSelect();
             return;
         }
 
-        
+        RemoveSelect();
     }
 
 
@@ -82,9 +82,15 @@ public partial class BottleInteractHandler
 
     public bool IsPourable(in Bottle sourceBottle, in Bottle targetBottle)
     {
-        if (sourceBottle == null || targetBottle == null || sourceBottle.Equals(targetBottle))
+        if (sourceBottle == null || targetBottle == null)
         {
             Debug.Log("Target is null");
+            return false;
+        }
+
+        if (sourceBottle.Equals(targetBottle))
+        {
+            Debug.Log("Duplicate Pouring");
             return false;
         }
 

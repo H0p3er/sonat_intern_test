@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 70862166203027504}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.64, z: -1}
+  m_LocalPosition: {x: 0, y: -1.92, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -538893378, guid: 50601b68bdb8b0443a713f87e2fe3b63, type: 3}
+  m_Sprite: {fileID: 1397559079, guid: 50601b68bdb8b0443a713f87e2fe3b63, type: 3}
   m_Color: {r: 0.6754716, g: 0.10578135, b: 0.10578135, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 226051818392365938}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.38, z: 0}
+  m_LocalPosition: {x: 0, y: -3.38, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -172,12 +172,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1003350497, guid: 50601b68bdb8b0443a713f87e2fe3b63, type: 3}
+  m_Sprite: {fileID: 1711587678, guid: 50601b68bdb8b0443a713f87e2fe3b63, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.53, y: 6.18}
+  m_Size: {x: 2.53, y: 1.54}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 1256073973649165023}
   - component: {fileID: 2046619205016697662}
   - component: {fileID: 4949214314328804706}
+  - component: {fileID: 143617438200927321}
   m_Layer: 0
   m_Name: Bottle
   m_TagString: Untagged
@@ -215,10 +216,10 @@ Transform:
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7784997757157851714}
-  - {fileID: 8645931511571477720}
-  - {fileID: 3911701369829681168}
   - {fileID: 4924639340755612850}
+  - {fileID: 3911701369829681168}
+  - {fileID: 8645931511571477720}
+  - {fileID: 7784997757157851714}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6132850041211396858
@@ -353,6 +354,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BottleDebugger
   _waterList: []
   _bottle: {fileID: 2046619205016697662}
+--- !u!114 &143617438200927321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2449338759379005766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e7ef049d1f13f49b29a7dbde45feb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BottleView
+  _bottle: {fileID: 0}
+  _waterList: []
+  _waterRenderers: []
+  _bottleRender: {fileID: 0}
 --- !u!1 &5689057505062442342
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +396,7 @@ Transform:
   m_GameObject: {fileID: 5689057505062442342}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.91, z: -2}
+  m_LocalPosition: {x: 0, y: -0.44, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -434,12 +451,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2119283011, guid: 50601b68bdb8b0443a713f87e2fe3b63, type: 3}
+  m_Sprite: {fileID: -400009150, guid: 50601b68bdb8b0443a713f87e2fe3b63, type: 3}
   m_Color: {r: 1, g: 0.7372684, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.53, y: 4.64}
+  m_Size: {x: 2.53, y: 1.54}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -470,7 +487,7 @@ Transform:
   m_GameObject: {fileID: 7366933664168433645}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.1, z: -3}
+  m_LocalPosition: {x: 0, y: 1.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -525,12 +542,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1392988527, guid: 50601b68bdb8b0443a713f87e2fe3b63, type: 3}
+  m_Sprite: {fileID: 558852795, guid: 50601b68bdb8b0443a713f87e2fe3b63, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.11, y: 0.13}
+  m_Size: {x: 2.53, y: 1.54}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

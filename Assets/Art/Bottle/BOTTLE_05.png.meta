@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BOTTLE_05_Full
+      name: BOTTLE_05_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 464
         width: 253
-        height: 620
+        height: 154
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,20 +138,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc773602aa503ab429da05c00e0a2e02
-      internalID: -1392988527
+      spriteID: b90842e07127a604b85b555acf8212cd
+      internalID: 558852795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BOTTLE_05_Mid1
+      name: BOTTLE_05_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 310
         width: 253
-        height: 464
+        height: 154
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,20 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 578a245f6118a8444b46a4f7ef4d38b0
-      internalID: -2119283011
+      spriteID: ef84fb22286617e4ea6f99150388358b
+      internalID: -400009150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BOTTLE_05_Mid2
+      name: BOTTLE_05_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 1
+        y: 156
         width: 253
-        height: 310
+        height: 154
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6651465283af5f640842ee308b3caf7b
-      internalID: -538893378
+      spriteID: f807ec3207a5cc945828d9c4dca3fdd9
+      internalID: 1397559079
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BOTTLE_05_Bottom
+      name: BOTTLE_05_3
       rect:
         serializedVersion: 2
         x: 0
@@ -204,8 +204,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4fefa8d7be530841910535cd4b4dd36
-      internalID: 1003350497
+      spriteID: 8b1628d14982a044dbf0f5843b0c59dc
+      internalID: 1711587678
       vertices: []
       indices: 
       edges: []
@@ -226,11 +226,10 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":4.0},"gridSpriteSize":{"x":253.0,"y":154.0},"gridSpriteOffset":{"x":0.0,"y":210.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      BOTTLE_05_0_: -1392988527
-      BOTTLE_05_Bottom: 1003350497
-      BOTTLE_05_Full: -1392988527
-      BOTTLE_05_Mid1: -2119283011
-      BOTTLE_05_Mid2: -538893378
+      BOTTLE_05_0: 558852795
+      BOTTLE_05_1: -400009150
+      BOTTLE_05_2: 1397559079
+      BOTTLE_05_3: 1711587678
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

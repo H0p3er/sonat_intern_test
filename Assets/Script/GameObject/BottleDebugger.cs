@@ -35,20 +35,8 @@ public class BottleDebugger : MonoBehaviour
     public void Start()
     {
         _waterStack = _bottle.WaterStack;
-
-        SyncFromList();
-
-        DebugBottle();
     }
 
-    private void SyncFromList()
-    {
-        foreach (var item in _waterList)
-        {
-/*            Debug.Log("Is Push:" + item.color);*/
-            _waterStack.Push(item);
-        }
-    }
 
     private void SyncFromStack()
     {

@@ -54,7 +54,7 @@ public class InputHandler : MonoBehaviour, InputSystem_Actions.IPlayerActions
         switch (context.phase)
         {
             case InputActionPhase.Performed:
-                Debug.Log("Click");
+                /*Debug.Log("Click");*/
                 InputEvent.InvokeClick();
                 break;
             default:

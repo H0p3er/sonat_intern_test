@@ -27,6 +27,6 @@ public class BottleSpawnDataSO : ScriptableObject
 [Serializable]
 public class BottleData
 {
-    public List<Water> water;
+    public List<Water> water = new ();
 
 }
