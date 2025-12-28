@@ -25,7 +25,7 @@ public class BottleDebugger : MonoBehaviour
 
         foreach (var item in _waterStack)
         {
-            stringBuilder.AppendLine(item.name + ":" + item.color);
+            stringBuilder.Append(item.Color + ";");
         }
 
         Debug.Log(stringBuilder.ToString());

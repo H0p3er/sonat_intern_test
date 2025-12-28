@@ -203,7 +203,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 73151184}
-  - component: {fileID: 73151183}
   - component: {fileID: 73151185}
   m_Layer: 0
   m_Name: Player
@@ -212,20 +211,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &73151183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 73151182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8d03d67061a9264692efdfe60305571, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BottleManager
-  _currentBottle: {fileID: 0}
-  _mousePosition: {x: 0, y: 0}
 --- !u!4 &73151184
 Transform:
   m_ObjectHideFlags: 0
@@ -607,9 +592,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 146838938}
+  - component: {fileID: 146838941}
   - component: {fileID: 146838937}
+  - component: {fileID: 146838939}
+  - component: {fileID: 146838940}
   m_Layer: 0
-  m_Name: BottleLayout
+  m_Name: BottleManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -628,6 +616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _bottles: []
+  _padding: 0
 --- !u!4 &146838938
 Transform:
   m_ObjectHideFlags: 0
@@ -651,6 +640,49 @@ Transform:
   - {fileID: 2003946058}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &146838939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146838936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d03d67061a9264692efdfe60305571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BottleInteractHandler
+  _currentBottle: {fileID: 0}
+  _mousePosition: {x: 0, y: 0}
+--- !u!114 &146838940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146838936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d38c195423a10419e942d55ff27a49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BottleAnimation
+  _anchorPouringPosition: {x: 0.2, y: 0, z: 0}
+  _moveDuration: 0.5
+  _pourDuration: 0.5
+--- !u!114 &146838941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146838936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c9d284b6bd18549ab700c6feaaa8b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BottleSpawner
+  prefab: {fileID: 2449338759379005766, guid: 3bb0f598b175cca479c351b5db0b9065, type: 3}
+  spawnData: {fileID: 11400000, guid: 4924f29aef1924d49a32b1cdf7d38778, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

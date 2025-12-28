@@ -32,6 +32,7 @@ public partial class BottleInteractHandler : MonoBehaviour
 
         if (!TryGetBottleByRaycast(out Bottle selectBottle)) {
             Debug.Log("Not found Bottle");
+            _currentBottle = null;
             return;
         }
 

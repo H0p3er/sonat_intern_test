@@ -90,7 +90,7 @@ public class BottleView : MonoBehaviour
                 _spriteRenderers[i].color = Color.clear;
             } else
             {
-                _spriteRenderers[i].color = _waterList[i].color;
+                _spriteRenderers[i].color = _waterList[i].Color;
             }
 
             i++;

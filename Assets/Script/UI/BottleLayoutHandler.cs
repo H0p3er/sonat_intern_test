@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class BottleLayout : MonoBehaviour
+public class BottleLayoutHandler : MonoBehaviour
 {
     [SerializeField] List<Bottle> _bottles;
 
+    [SerializeField] float _padding;
     private void Awake()
     {
         if (_bottles == null) _bottles = GetComponentsInChildren<Bottle>().ToList();
@@ -38,7 +39,7 @@ public class BottleLayout : MonoBehaviour
         {
             x = i - (float)_bottles.Count / 2;
 
-            bottlePosition = new Vector3(pivotX + x, 0, 0);
+            bottlePosition = new Vector3(pivotX + x*_padding, 0, 0);
 
             _bottles[i].transform.position = bottlePosition;
         }
@@ -49,7 +50,7 @@ public class BottleLayout : MonoBehaviour
         {
             x = _bottles.Count - i;
 
-            bottlePosition = new Vector3(pivotX + x, 0, 0);
+            bottlePosition = new Vector3(pivotX + x*_padding, 0, 0);
 
             _bottles[i].transform.position = bottlePosition;
         }

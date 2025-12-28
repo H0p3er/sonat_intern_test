@@ -1,35 +1,29 @@
 using System;
 using UnityEngine;
 
-public class BottleSpawner : MonoBehaviour
+public class BottleSpawnHandler : MonoBehaviour
 {
     [SerializeField] GameObject prefab;
 
-    [SerializeField] BottleSpawnData spawnData;
+    [SerializeField] BottleSpawnDataSO spawnData;
 
     void Start()
     {
+        if (spawnData.numberPerRow == 0) return;
+
         for (int i = 0; i < spawnData.numberOfBottles; i++) {
 
-            int x = i % spawnData.numberPerRow;
+            GameObject gameObject = Instantiate(prefab, this.transform);
 
-            int y = i / spawnData.numberPerRow;
+            if (gameObject.TryGetComponent(out Bottle bottle))
+            {
 
-            Vector3 position = transform.position + new Vector3(x, y, 0);
+            }
 
-            Instantiate(prefab, position , Quaternion.identity);
         }      
     }
 
-}
 
-[Serializable]
-public class BottleSpawnData
-{
-    public int numberOfBottles;
-
-    public int numberPerRow;
-
-    
 
 }
+
