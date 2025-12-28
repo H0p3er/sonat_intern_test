@@ -8,7 +8,7 @@ public class BottleAnimationHandler : MonoBehaviour
 {
     [SerializeField] Sequence _sequence;
 
-    [SerializeField] Vector2 _anchorPouringPosition = new (0.2f ,0);
+    [SerializeField] Vector2 _anchorPouringPosition = new (1.5f , 2f);
 
     [SerializeField] float _moveDuration = 0.5f;
 
