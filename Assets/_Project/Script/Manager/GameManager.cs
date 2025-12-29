@@ -1,3 +1,4 @@
+using System;
 using UnityEditor.Experimental.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,6 +25,23 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
+
+    private void OnEnable()
+    {
+        GameEvent.Win += OnWin;
+    }
+
+    private void OnWin()
+    {
+        gameState = GameState.Win;
+    }
+
+    private void OnDisable()
+    {
+        GameEvent.Win -= OnWin;
+    }
+
 
 
     public enum SceneName
