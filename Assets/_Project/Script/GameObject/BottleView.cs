@@ -14,6 +14,10 @@ public class BottleView : MonoBehaviour
 
     private void Awake()
     {
+        if (_bottle == null)
+        {
+            Debug.Log("Not set bottle");
+        }
         _bottle = GetComponent<Bottle>();
 
         _bottleRender = GetComponent<SpriteRenderer>();
@@ -32,12 +36,12 @@ public class BottleView : MonoBehaviour
 
     private void OnEnable()
     {
-        ActionEvent.PourBottle += OnPour;
+        GameActionEvent.PourBottle += OnPour;
     }
 
     private void OnDisable()
     {
-        ActionEvent.PourBottle -= OnPour;
+        GameActionEvent.PourBottle -= OnPour;
     }
 
 

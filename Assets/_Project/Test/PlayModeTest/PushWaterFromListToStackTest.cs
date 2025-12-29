@@ -29,10 +29,10 @@ namespace Test
 
             List<Water> waterList = new()
             {
-                new Water(Water.WaterColor.Red),
-                new Water(Water.WaterColor.Red),
-                new Water(Water.WaterColor.Blue),
-                new Water(Water.WaterColor.Green),
+                new Water(Water.WaterColor.Yellow),
+                new Water(Water.WaterColor.Yellow),
+                new Water(Water.WaterColor.Orange),
+                new Water(Water.WaterColor.DarkGreen),
             };
 
 

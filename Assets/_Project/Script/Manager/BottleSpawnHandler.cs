@@ -14,7 +14,7 @@ public class BottleSpawnHandler : MonoBehaviour
 
     [SerializeField] List<Bottle> _bottles;
 
-    [SerializeField] float _padding = 1f;
+    [SerializeField] float _spawnPadding = 1f;
 
     private void Awake()
     {
@@ -61,7 +61,7 @@ public class BottleSpawnHandler : MonoBehaviour
         {
             x = i - (float)_bottles.Count / 2;
 
-            bottlePosition = new Vector3(pivotX + x * _padding, 0, 0);
+            bottlePosition = new Vector3(pivotX + x * _spawnPadding, 0, 0);
 
             _bottles[i].transform.position = bottlePosition;
         }
@@ -72,7 +72,7 @@ public class BottleSpawnHandler : MonoBehaviour
         {
             x = _bottles.Count - i;
 
-            bottlePosition = new Vector3(pivotX + x * _padding, 0, 0);
+            bottlePosition = new Vector3(pivotX + x * _spawnPadding, 0, 0);
 
             _bottles[i].transform.position = bottlePosition;
         }

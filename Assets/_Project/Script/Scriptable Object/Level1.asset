@@ -17,18 +17,30 @@ MonoBehaviour:
   waterDepth: 0
   bottles:
   - water:
-    - _color: 0
-    - _color: 0
     - _color: 1
+    - _color: 4
+  - water:
+    - _color: 3
+  - water:
+    - _color: 4
+    - _color: 0
+    - _color: 3
+    - _color: 3
+  - water:
+    - _color: 4
+    - _color: 4
+    - _color: 3
     - _color: 2
   - water:
-    - _color: 0
     - _color: 1
+    - _color: 1
+    - _color: 1
+    - _color: 0
+  - water:
+    - _color: 0
+    - _color: 0
+  - water:
     - _color: 2
-    - _color: 3
-  - water: []
-  - water: []
-  - water: []
-  - water: []
-  - water: []
+    - _color: 2
+    - _color: 2
   - water: []

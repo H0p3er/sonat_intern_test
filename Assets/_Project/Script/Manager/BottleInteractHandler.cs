@@ -29,27 +29,28 @@ public partial class BottleInteractHandler : MonoBehaviour
 
     private void OnClick()
     {
-
         if (!TryGetBottleByRaycast(out Bottle selectBottle)) {
             Debug.Log("Not found Bottle");
             RemoveSelect();
             return;
         }
 
-        if (IsSelectable(_currentBottle, selectBottle)) {
+        if (IsPourable(_currentBottle, selectBottle))
+        {
+            Debug.Log("Pourable");
+            Pour(_currentBottle, selectBottle);
+            return;
+        }
+
+
+        if (IsSelectable(_currentBottle, selectBottle))
+        {
             Debug.Log("Selecteable");
             Select(selectBottle);
             return;
         } 
 
 
-        if (IsPourable(_currentBottle, selectBottle))
-        {
-            Debug.Log("Pourable");
-            Pour(_currentBottle, selectBottle);
-            RemoveSelect();
-            return;
-        }
 
         RemoveSelect();
     }
@@ -77,7 +78,9 @@ public partial class BottleInteractHandler
             targetBottle.WaterStack.Push(sourceBottle.WaterStack.Pop());
         }
 
-        ActionEvent.InvokePourBottle(sourceBottle, targetBottle, i);
+        GameActionEvent.InvokePourBottle(sourceBottle, targetBottle, i);
+
+        _currentBottle = null;
     }
 
     public bool IsPourable(in Bottle sourceBottle, in Bottle targetBottle)
@@ -121,10 +124,15 @@ public partial class BottleInteractHandler
     public void Select(Bottle bottle)
     {
         _currentBottle = bottle;
+        GameActionEvent.InvokeSelectBottle(_currentBottle);
     }
 
     public void RemoveSelect() { 
-        _currentBottle = null;    
+        if (_currentBottle != null)
+        {
+            GameActionEvent.InvokeRemoveSelectBottle(_currentBottle);
+            _currentBottle = null;
+        }
     }
 
     public bool IsSelectable(Bottle sourceBottle, Bottle targetBottle)

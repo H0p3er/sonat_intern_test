@@ -1,10 +1,14 @@
 using UnityEditor.Experimental.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
+    [SerializeField] CanvasGroup _gameOverPanel;
+    [SerializeField] CanvasGroup _gameCompletePanel;
 
     public SceneName currentScene;
 

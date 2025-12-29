@@ -26,12 +26,12 @@ public class BottleManager : MonoBehaviour
 
     private void OnEnable()
     {
-        ActionEvent.PourBottle += OnPourBottle;
+        GameActionEvent.PourBottle += OnPourBottle;
     }
 
     private void OnDisable()
     {
-        ActionEvent.PourBottle -= OnPourBottle;
+        GameActionEvent.PourBottle -= OnPourBottle;
     }
 
     private void OnPourBottle(Bottle source, Bottle target, int amount)
@@ -54,6 +54,7 @@ public class BottleManager : MonoBehaviour
 
         if (isWinFlag)
         {
+            Debug.Log("Win game");
             GameEvent.InvokeWin();
         }
     }
